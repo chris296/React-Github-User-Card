@@ -3,7 +3,7 @@ import React from 'react';
 const UserCard = props => {
 
         return(
-        <div>
+        <div className="card">
           <img src={props.userdata.avatar_url}/>
           <div>
             <h3>{props.userdata.name}</h3>

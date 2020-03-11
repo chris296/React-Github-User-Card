@@ -8,7 +8,8 @@ import FollowerList from './components/FollowerList';
 class App extends React.Component {
 
   state = {
-    userdata: {}
+    userdata: {},
+    followers: []
   }
 
   componentDidMount() {
@@ -21,6 +22,15 @@ class App extends React.Component {
       })
     })
     .catch(err => console.log(err.message));
+    axios
+    .get('https://api.github.com/users/chris296/followers')
+    .then(res=> {
+      console.log(res);
+      this.setState({
+        followers: res.data
+      })
+    })
+    .catch(err => console.log(err.message));
   }
   
   
@@ -28,10 +38,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>github user card</h1>
+      <div className='container'>
+        <h1>Github User Card</h1>
         <UserCard userdata={this.state.userdata} />
-        <FollowerList />
+        <h1>Followers:</h1>
+        <div className='followercon'>
+        <FollowerList followers={this.state.followers}/>
+        </div>
       </div>
     )
   }

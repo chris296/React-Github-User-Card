@@ -1,24 +1,15 @@
 import React from 'react';
-import axios from 'axios';
+import FollowerCard from './FollowerCard';
 
-class FollowerList extends React.Component {
-    state = {
-        followers: []
-    }
+const FollowerList = props => {
 
-    componentDidMount() {
-        axios
-        .get('https://api.github.com/users/chris296/followers')
-        .then(res => {
-            console.log(res)
-        })
-    }
-
-    render() {
-        return(
-            <div></div>
-        )
-    }
+     return(
+        <div>
+             {props.followers.map(item =>(
+                 <FollowerCard key={props.followers.id} follower={item} />
+             ))} 
+         </div>
+     )
 }
 
 export default FollowerList;
